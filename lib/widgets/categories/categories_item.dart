@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import '../screens/category_detail_screen.dart';
+import '../../screens/categories/category_detail_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;

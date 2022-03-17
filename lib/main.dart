@@ -1,9 +1,10 @@
-import 'package:chat_app/screens/auth_screen.dart';
-import 'package:chat_app/screens/category_detail_screen.dart';
-import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/auth/auth_screen.dart';
+import 'package:chat_app/screens/categories/category_detail_screen.dart';
+import 'package:chat_app/screens/auth/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:chat_app/screens/categories_overview_screen.dart';
+import 'package:chat_app/screens/categories/categories_overview_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +46,15 @@ class MyApp extends StatelessWidget {
       ),
       // home: CategoryOverviewScreen(),
       //home: ChatScreen(),
-      home: AuthScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, userSnapShot) {
+          if (userSnapShot.hasData) {
+            return ChatScreen();
+          }
+          return AuthScreen();
+        },
+      ),
       routes: {
         CategoryDetailScreen.routeName: (ctx) => CategoryDetailScreen(),
       },

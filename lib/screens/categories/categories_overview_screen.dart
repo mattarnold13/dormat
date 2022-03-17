@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/categories.dart';
-import '../widgets/categories_item.dart';
+import '../../models/categories.dart';
+import '../../widgets/categories/categories_item.dart';
 
 class CategoryOverviewScreen extends StatelessWidget {
   static const routeName = '/category-detail';
