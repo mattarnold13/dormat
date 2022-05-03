@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chat_app/widgets/chat/message_bubble.dart';
@@ -35,8 +33,9 @@ class Messages extends StatelessWidget {
             itemBuilder: (ctx, index) {
               return MessageBubble(
                 chatDocs![index]['text'],
+                chatDocs[index]['username'],
                 chatDocs[index]['userId'] == currentUser?.uid,
-                key: ValueKey(chatDocs[index].data.documentID),
+                key: ValueKey(chatDocs[index].id),
               );
             });
       }),

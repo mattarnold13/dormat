@@ -1,12 +1,16 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble(this.message, this.isMe, {required this.key});
+  MessageBubble(this.message, this.userName, this.isMe, {required this.key});
 
-  final String message;
-  final bool isMe;
+  @override
   final Key key;
-
+  final String message;
+  final String userName;
+  final bool isMe;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,16 +19,14 @@ class MessageBubble extends StatelessWidget {
         children: <Widget>[
           Container(
               decoration: BoxDecoration(
-                  color: isMe
-                      ? Colors.grey[300]
-                      : Theme.of(context).colorScheme.secondary,
+                  color: isMe ? Colors.grey[300] : Colors.blue[300],
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                     bottomLeft:
                         !isMe ? Radius.circular(0) : Radius.circular(12),
                     bottomRight:
-                        !isMe ? Radius.circular(0) : Radius.circular(12),
+                        isMe ? Radius.circular(0) : Radius.circular(12),
                   )),
               width: 140,
               padding: EdgeInsets.symmetric(
@@ -32,15 +34,24 @@ class MessageBubble extends StatelessWidget {
                 horizontal: 16,
               ),
               margin: EdgeInsets.symmetric(
-                vertical: 4,
+                vertical: 16,
                 horizontal: 8,
               ),
-              child: Text(
-                message,
-                style: TextStyle(
-                    color: isMe
-                        ? Colors.black
-                        : Theme.of(context).accentTextTheme.headline6?.color),
+              child: Column(
+                crossAxisAlignment:
+                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    userName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    message,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
               )),
         ]);
   }
