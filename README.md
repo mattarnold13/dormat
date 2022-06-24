@@ -8,7 +8,7 @@ This is a working copy.
 
 
 
-Right Click on Desktop - Git Bash Here
-  git clone - ADDRESS OF PROJECT IN GITHUB
-  cd folder
-  'code .' - opens VS Code
+*Right Click on Desktop - Git Bash Here
+  * git clone - ADDRESS OF PROJECT IN GITHUB
+  * cd folder
+  * 'code .' - opens VS Code
